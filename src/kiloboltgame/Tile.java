@@ -5,29 +5,32 @@ import java.awt.Image;
 public class Tile {
 	private int tileX, tileY, speedX, type;
 	private Image tileImage;
+	private Robot robot = StartingClass.getRobot();
 	private Background bg = StartingClass.getBg1();
 
-	public Tile(int x, int y, int type) {
-		tileX = x*40;
-		tileY = y*40;
-		this.type = type;
-		
-		if(type == 1)
-			tileImage = StartingClass.tileocean;
-		else if(type == 2)
+	public Tile(int x, int y, int typeInt) {
+		tileX = x * 40;
+		tileY = y * 40;
+		type = typeInt;
+
+		if (type == 5) {
 			tileImage = StartingClass.tiledirt;
+		} else if (type == 8) {
+			tileImage = StartingClass.tilegrassTop;
+		} else if (type == 4) {
+			tileImage = StartingClass.tilegrassLeft;
+
+		} else if (type == 6) {
+			tileImage = StartingClass.tilegrassRight;
+
+		} else if (type == 2) {
+			tileImage = StartingClass.tilegrassBot;
+		}
+
 	}
 
 	public void update() {
-		if (type == 1) {
-			if (bg.getSpeedX() == 0) {
-				speedX = -1;
-			} else {
-				speedX = -2;
-			}
-		}else{
-			speedX = bg.getSpeedX()*5;
-		}
+		speedX = bg.getSpeedX() * 5;
 		tileX += speedX;
 	}
 
