@@ -90,7 +90,7 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 		bg1 = new Background(0, 0);
 		bg2 = new Background(2160, 0);
 		robot = new Robot();
-		
+
 		try {
 			loadMap("data/map1.txt");
 		} catch (IOException e) {
@@ -129,7 +129,7 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 		for (int j = 0; j < 12; j++) {
 			String line = (String) lines.get(j);
 			for (int i = 0; i < width; i++) {
-				
+
 				if (i < line.length()) {
 					char ch = line.charAt(i);
 					Tile t = new Tile(i, j, Character.getNumericValue(ch));
@@ -320,6 +320,7 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 	public static Background getBg2() {
 		return bg2;
 	}
+
 	public static Robot getRobot() {
 		return robot;
 	}

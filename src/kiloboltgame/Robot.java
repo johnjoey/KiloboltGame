@@ -1,5 +1,6 @@
 package kiloboltgame;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 
 public class Robot {
@@ -29,6 +30,13 @@ public class Robot {
 
 	private int speedX = 0;
 	private int speedY = 0;
+	public static Rectangle rectTop = new Rectangle(0,0,0,0);
+	public static Rectangle rectBot = new Rectangle(0,0,0,0);
+	public static Rectangle rectLeft = new Rectangle(0,0,0,0);
+	public static Rectangle rectRight = new Rectangle(0,0,0,0);
+	public static Rectangle collisionSpace = new Rectangle(0,0,0,0);
+	public static Rectangle footleft = new Rectangle(0,0,0,0);
+	public static Rectangle footright = new Rectangle(0,0,0,0);
 	
 	private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 
@@ -56,14 +64,25 @@ public class Robot {
 		
 
 		// Handles Jumping
-		if (jumped == true) {
-			speedY += 1;
+		speedY += 1;
+		if(speedY > 3) { 
+			jumped=true;
 		}
+		
 
 		// Prevents going beyond X coordinate of 0
 		if (centerX + speedX <= 60) {
 			centerX = 61;
 		}
+		
+		//Bounding rectangles
+		rectTop.setRect(centerX - 34, centerY - 63, 68, 63);
+		rectBot.setRect(rectTop.getX(), rectTop.getY()+63, 68, 64);
+		rectLeft.setRect(rectTop.getX()-26, rectTop.getY()+32, 26, 20);
+		rectRight.setRect(rectTop.getX()+68, rectTop.getY()+32, 26, 20);
+		collisionSpace.setRect(centerX-110, centerY-110, 180, 180);
+		footleft.setRect(centerX - 50, centerY + 20, 50, 15);
+		footright.setRect(centerX, centerY + 20, 50, 15);
 	}
 
 	public void moveRight() {
