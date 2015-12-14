@@ -1,15 +1,23 @@
 package kiloboltgame;
 
+import java.awt.Rectangle;
+
 public class Enemy {
 
-	private int maxHealth, currentHealth, power, speedX, centerX, centerY;
+	private int power, speedX, centerX, centerY;
 	private Background bg = StartingClass.getBg1();
+	public Rectangle r = new Rectangle(0,0,0,0);
+	
+	public int health = 5;
 
 	// Behavioral Methods
 	public void update() {
 		centerX += speedX;
 		speedX = bg.getSpeedX()*5;
-
+		r.setBounds(centerX-25, centerY-25, 50, 60);
+		if(r.intersects(Robot.collisionSpace)){
+			checkCollision();
+		}
 	}
 
 	public void die() {
@@ -19,14 +27,13 @@ public class Enemy {
 	public void attack() {
 
 	}
-
-	public int getMaxHealth() {
-		return maxHealth;
+	
+	private void checkCollision(){
+		if(r.intersects(Robot.rectTop) || r.intersects(Robot.rectBot) || r.intersects(Robot.rectLeft) || r.intersects(Robot.rectRight)){
+			System.out.println("This nigga in ma face yo.");
+		}
 	}
 
-	public int getCurrentHealth() {
-		return currentHealth;
-	}
 
 	public int getPower() {
 		return power;
@@ -46,14 +53,6 @@ public class Enemy {
 
 	public Background getBg() {
 		return bg;
-	}
-
-	public void setMaxHealth(int maxHealth) {
-		this.maxHealth = maxHealth;
-	}
-
-	public void setCurrentHealth(int currentHealth) {
-		this.currentHealth = currentHealth;
 	}
 
 	public void setPower(int power) {

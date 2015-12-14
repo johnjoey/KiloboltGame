@@ -17,14 +17,6 @@ public class Robot {
 	private boolean ducked = false;
 	private boolean readyToFire = true;
 
-	public boolean isReadyToFire() {
-		return readyToFire;
-	}
-
-	public void setReadyToFire(boolean readyToFire) {
-		this.readyToFire = readyToFire;
-	}
-
 	private static Background bg1 = StartingClass.getBg1();
 	private static Background bg2 = StartingClass.getBg2();
 
@@ -136,6 +128,15 @@ public class Robot {
 			projectiles.add(p);
 		}
 	}
+	
+	public boolean isReadyToFire() {
+		return readyToFire;
+	}
+
+	public void setReadyToFire(boolean readyToFire) {
+		this.readyToFire = readyToFire;
+	}
+
 	
 	public ArrayList<Projectile> getProjectiles() {
 		return projectiles;
